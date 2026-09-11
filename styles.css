@@ -117,7 +117,7 @@ h1 { max-width: 1050px; margin: 24px 0 30px; font-size: clamp(3rem, 6.3vw, 6.7re
 .project-row h3 { margin: 0 0 7px; font-size: 1.45rem; line-height: 1.2; }
 .project-row p { max-width: 670px; margin: 0; color: var(--muted); }
 .project-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; text-align: right; }
-.project-meta span { font: 500 .86rem "DM Mono", monospace; }
+.project-meta span { font: 700 1rem "DM Mono", monospace; }
 .project-meta small { color: #b9c0ce; font-size: .8rem; }
 .project-demo { position: relative; width: 180px; height: 150px; border: 1px solid rgba(255,255,255,.16); border-radius: 14px; background: rgba(5,7,12,.44); box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 12px 30px rgba(0,0,0,.22); overflow: hidden; }
 .project-demo::after { position: absolute; inset: 9px; content: ""; border: 1px solid rgba(99,230,255,.14); border-radius: 9px; pointer-events: none; }
@@ -175,7 +175,7 @@ h1 { max-width: 1050px; margin: 24px 0 30px; font-size: clamp(3rem, 6.3vw, 6.7re
 .dialog-close { font-size: 1.7rem; }
 .dialog-content { display: grid; grid-template-columns: minmax(280px,.7fr) minmax(480px,1.3fr); gap: 4vw; min-height: 0; padding: 32px 4vw; overflow: auto; }
 .dialog-copy { align-self: center; max-width: 580px; }
-.dialog-year { color: var(--lime); }
+.dialog-year { color: var(--lime); font-size: clamp(1.05rem,1.4vw,1.35rem); font-weight: 700; }
 .dialog-description { margin: 20px 0 16px; font-size: clamp(1.25rem,2vw,1.85rem); font-weight: 700; line-height: 1.3; }
 .dialog-detail { color: var(--muted); }
 .github-link { display: none; width: max-content; margin-top: 20px; padding-bottom: 3px; color: var(--cyan); border-bottom: 1px solid currentColor; font-weight: 700; }
