@@ -105,7 +105,7 @@ h1 { max-width: 1050px; margin: 24px 0 30px; font-size: clamp(3rem, 6.3vw, 6.7re
 .style-card { display: flex; flex-direction: column; gap: 22px; padding: 28px 24px; border: 1px solid rgba(255,255,255,.12); border-radius: 22px; background: rgba(255,255,255,.03); }
 .style-label { margin: 0; color: var(--muted); font: 700 .78rem "DM Mono", monospace; text-transform: uppercase; letter-spacing: .04em; }
 .style-demo { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; min-height: 190px; padding: 28px 22px; border-radius: 16px; }
-.mock-button { border: 0; cursor: default; font-family: "Manrope", sans-serif; }
+.mock-button, .mock-badge { border: 0; cursor: pointer; background: transparent; font-family: "Manrope", sans-serif; -webkit-tap-highlight-color: transparent; transition: transform .12s ease, box-shadow .16s ease, filter .16s ease, background-color .16s ease; }
 .mock-badge { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; }
 .mock-badge::before { width: 8px; height: 8px; content: ""; border-radius: 50%; background: currentColor; }
 
@@ -114,12 +114,34 @@ h1 { max-width: 1050px; margin: 24px 0 30px; font-size: clamp(3rem, 6.3vw, 6.7re
 .style-flat .mock-badge { padding: 8px 14px; border-radius: 8px; font-size: .8rem; }
 .style-flat .mock-badge-on { color: #06381f; background: #35d484; }
 .style-flat .mock-badge-off { color: #430b10; background: #ff6b79; }
+.style-flat .mock-button:hover,
+.style-flat .mock-badge:hover { filter: brightness(1.08); }
+.style-flat .mock-button:active,
+.style-flat .mock-badge:active { transform: scale(.92); filter: brightness(.94); transition-duration: .06s; }
+.style-flat .mock-button:focus-visible,
+.style-flat .mock-badge:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
 
 .style-skeuo .style-demo { background: linear-gradient(180deg, #1c2432, #0c0f16); }
 .style-skeuo .mock-button { padding: 13px 22px; color: #eef6ff; background: linear-gradient(180deg, #4f8fb8, #1f5a76); border: 1px solid #0d3345; border-radius: 999px; box-shadow: 0 7px 0 #06141c, 0 12px 22px rgba(0,0,0,.45), inset 0 2px 0 rgba(255,255,255,.5), inset 0 -6px 10px rgba(0,0,0,.25); font-size: .88rem; font-weight: 700; text-shadow: 0 1px 1px rgba(0,0,0,.35); }
 .style-skeuo .mock-badge { padding: 9px 16px; border-radius: 999px; box-shadow: 0 5px 0 rgba(0,0,0,.4), 0 8px 16px rgba(0,0,0,.35), inset 0 2px 0 rgba(255,255,255,.45), inset 0 -5px 8px rgba(0,0,0,.2); font-size: .78rem; text-shadow: 0 1px 1px rgba(0,0,0,.3); }
 .style-skeuo .mock-badge-on { color: #eafff2; background: linear-gradient(180deg, #6fd88f, #279a55); }
 .style-skeuo .mock-badge-off { color: #ffecec; background: linear-gradient(180deg, #ef7a83, #b8323f); }
+.style-skeuo .mock-button:hover,
+.style-skeuo .mock-badge:hover { filter: brightness(1.06); }
+.style-skeuo .mock-button:active {
+  transform: translateY(6px) scale(.98);
+  box-shadow: 0 1px 0 #06141c, 0 3px 8px rgba(0,0,0,.4), inset 0 4px 10px rgba(0,0,0,.55), inset 0 -1px 0 rgba(255,255,255,.12);
+  filter: brightness(.92);
+  transition-duration: .06s;
+}
+.style-skeuo .mock-badge:active {
+  transform: translateY(4px) scale(.97);
+  box-shadow: 0 1px 0 rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.35), inset 0 3px 7px rgba(0,0,0,.5), inset 0 -1px 0 rgba(255,255,255,.1);
+  filter: brightness(.92);
+  transition-duration: .06s;
+}
+.style-skeuo .mock-button:focus-visible,
+.style-skeuo .mock-badge:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
 
 .style-glass .style-demo { position: relative; background: linear-gradient(135deg, rgba(71,120,255,.22), rgba(99,230,255,.08)); overflow: hidden; }
 .style-glass .style-demo::before,
@@ -133,6 +155,24 @@ h1 { max-width: 1050px; margin: 24px 0 30px; font-size: clamp(3rem, 6.3vw, 6.7re
 .style-glass .mock-badge { padding: 8px 14px; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; background: var(--glass); box-shadow: inset 0 1px 0 rgba(255,255,255,.25); backdrop-filter: blur(14px); font-size: .8rem; }
 .style-glass .mock-badge-on { color: #baffd6; }
 .style-glass .mock-badge-off { color: #ffc4ca; }
+.style-glass .mock-button:hover,
+.style-glass .mock-badge:hover { filter: brightness(1.1); }
+.style-glass .mock-button:active {
+  transform: scale(1.05);
+  background: rgba(255,255,255,.28);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.5), 0 0 24px rgba(99,230,255,.55), 0 10px 26px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.6);
+  filter: brightness(1.15);
+  transition-duration: .1s;
+}
+.style-glass .mock-badge:active {
+  transform: scale(1.08);
+  background: rgba(255,255,255,.22);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.45), 0 0 18px rgba(99,230,255,.45), inset 0 1px 0 rgba(255,255,255,.5);
+  filter: brightness(1.15);
+  transition-duration: .1s;
+}
+.style-glass .mock-button:focus-visible,
+.style-glass .mock-badge:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
 
 .projects { padding: 110px 4vw; }
 .projects-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 38px; }
