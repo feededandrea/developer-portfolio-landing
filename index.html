@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0c0f" />
+    <meta name="description" content="Portfolio de desarrollo de producto, mobile, web e IoT." />
+    <title>Federico D'Andrea | Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=20260911-0310" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="Volver al inicio">
+        <span class="wordmark-mark">FD</span>
+        <span>Federico D'Andrea</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <a href="#interfaces">Interfaces</a>
+        <a href="#proyectos">Proyectos</a>
+        <div class="language-switch" role="group" aria-label="Idioma del sitio">
+          <button class="language-option is-active" type="button" data-language="es" aria-pressed="true">ES</button>
+          <button class="language-option" type="button" data-language="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="nav-cta" href="https://drive.google.com/file/d/1yabrSIuNtlPMVBScMvnrsPFbqsuQoODv/view?usp=drivesdk" target="_blank" rel="noreferrer">Ver CV <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot"></span> Developer Portfolio · Argentina</p>
+          <h1 id="hero-title">Federico<br />D'Andrea.</h1>
+          <p class="hero-role">Desarrollo productos digitales de punta a punta.</p>
+          <p class="hero-intro">Soy Federico D'Andrea, desarrollador con foco en producto y diseño. Trabajo en iOS, macOS, Windows, web e IoT, conectando interfaces con datos, streaming, Bluetooth y hardware. Me importan las animaciones, la atención al detalle y que cada decisión visual tenga una función. Llevo los proyectos desde el prototipo hasta una versión lista para usar.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#proyectos">Explorar proyectos <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="#interfaces">Ver interfaces <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <div class="hero-index" aria-label="Áreas de experiencia">
+          <p class="index-label">Áreas</p>
+          <ol>
+            <li><span>01</span> Apple, Windows/.NET & mobile</li>
+            <li><span>02</span> Web full-stack & producto</li>
+            <li><span>03</span> Tiempo real, IoT & hardware</li>
+            <li><span>04</span> Flat, glass, skeuomorfismo & motion</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="interfaces" id="interfaces" aria-labelledby="interfaces-title">
+        <div class="interfaces-heading">
+          <p class="eyebrow">Selección visual</p>
+          <h2 id="interfaces-title">Interfaces</h2>
+          <p>Una muestra de las aplicaciones y experiencias que desarrollé.</p>
+        </div>
+        <div class="interface-viewer" aria-label="Galería de interfaces de aplicaciones">
+          <figure><div class="phone-frame"><div class="phone-speaker"></div><div class="screen-placeholder screen-booming"><span>01</span><b>Booming</b><i></i><i></i><i></i></div></div><figcaption>Booming · Dinesys</figcaption></figure>
+          <figure><div class="phone-frame"><div class="phone-speaker"></div><div class="screen-placeholder screen-obs"><span>02</span><b>OBS Cam</b><i></i><i></i><i></i></div></div><figcaption>OBS Cam · iOS</figcaption></figure>
+          <figure><div class="phone-frame"><div class="phone-speaker"></div><div class="screen-placeholder screen-led"><span>03</span><b>LED Pants</b><i></i><i></i><i></i></div></div><figcaption>LED Pants · iOS & macOS</figcaption></figure>
+          <figure><div class="phone-frame"><div class="phone-speaker"></div><div class="screen-placeholder screen-slider"><span>04</span><b>Slider</b><i></i><i></i><i></i></div></div><figcaption>Cámara Slider</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="projects" id="proyectos" aria-labelledby="projects-title">
+        <div class="projects-heading">
+          <div>
+            <p class="eyebrow">Archivo seleccionado / 2017—2026</p>
+            <h2 id="projects-title">Proyectos</h2>
+          </div>
+          <div class="filters" aria-label="Filtrar proyectos">
+            <button class="filter is-active" type="button" data-filter="all">Todos</button>
+            <button class="filter" type="button" data-filter="mobile">Mobile</button>
+            <button class="filter" type="button" data-filter="web">Web</button>
+            <button class="filter" type="button" data-filter="hardware">IoT</button>
+          </div>
+        </div>
+
+        <div class="project-list" aria-live="polite">
+          <article class="project-row" data-category="web">
+            <span class="project-number">01</span><div class="project-demo demo-artist" aria-hidden="true"><span></span><span></span><span></span><b>AI / CANVAS</b></div><div><h3>AutoArtist</h3><p>Plataforma web para crear y gestionar experiencias visuales con una arquitectura moderna y escalable.</p></div><div class="project-meta"><span>2026</span><small>React · Next.js · TypeScript · Supabase · Tailwind</small></div>
+          </article>
+          <article class="project-row" data-category="mobile">
+            <span class="project-number">02</span><div class="project-demo demo-phone demo-booming" aria-hidden="true"><i></i><img src="assets/booming-logo.png" alt="" /><span></span><span></span></div><div><h3>Booming · Dinesys</h3><p>Aplicación iOS del ecosistema Dinesys para la operación comercial en campo: clientes, rutas, pedidos, cobranzas y actividades.</p></div><div class="project-meta"><span>2026</span><small>Swift · SwiftUI · UIKit · Core Data · MapKit</small></div>
+          </article>
+          <article class="project-row" data-category="mobile">
+            <span class="project-number">02</span><div class="project-demo real-app-icon" aria-hidden="true"><img src="assets/icons/obs-camera.webp" alt="" /></div><div><h3>OBS Cam iOS & macOS</h3><p>Solución para convertir dispositivos Apple en una fuente de cámara para streaming en tiempo real.</p></div><div class="project-meta"><span>2026</span><small>SwiftUI · Wired & Wi-Fi · Real-time streaming</small></div>
+          </article>
+          <article class="project-row" data-category="mobile hardware">
+            <span class="project-number">03</span><div class="project-demo real-app-icon" aria-hidden="true"><img src="assets/icons/led-pants.png" alt="" /></div><div><h3>LED Pants · iOS & macOS</h3><p>Aplicación para Apple Watch, iOS y macOS que controla por Wi-Fi un ESP32 conectado a dos tiras LED, con modos estáticos y secuencias sincronizadas con audio.</p></div><div class="project-meta"><span>2026</span><small>SwiftUI · iOS · macOS · watchOS · Wi-Fi · ESP32 · Audio Timeline · Import/Export</small></div>
+          </article>
+          <article class="project-row" data-category="web mobile">
+            <span class="project-number">04</span><div class="project-demo real-app-icon" aria-hidden="true"><img src="assets/icons/ifeedebook.png" alt="" /></div><div><h3>iFeedeBook</h3><p>Red social web retro con feed, perfiles, páginas, juegos y chat en tiempo real, acompañada por un cliente nativo para iOS 6.</p></div><div class="project-meta"><span>2026</span><small>Web · Objective-C · iOS 6 · Social Feed · Real-time Chat</small></div>
+          </article>
+          <article class="project-row" data-category="mobile">
+            <span class="project-number">05</span><div class="project-demo demo-phone demo-chat" aria-hidden="true"><i></i><span>Hey!</span><span>Online ●</span><span>¿Hablamos?</span></div><div><h3>MSN Fun App</h3><p>Aplicación de chat inspirada en el espíritu de MSN, con conversación y presencia en tiempo real.</p></div><div class="project-meta"><span>2026</span><small>Objective-C · iOS 6 · Chat · Real-time</small></div>
+          </article>
+          <article class="project-row" data-category="web mobile">
+            <span class="project-number">06</span><div class="project-demo demo-lab" aria-hidden="true"><b>pH 6.8</b><span style="--h:38%"></span><span style="--h:72%"></span><span style="--h:52%"></span><span style="--h:86%"></span></div><div><h3>Laboratorio de Edafología</h3><p>Proyecto realizado con el equipo de ADINI para la UBA, donde trabajé como diseñador y desarrollador front-end.</p></div><div class="project-meta"><span>2025</span><small>Figma · React · JavaScript · Kotlin</small></div>
+          </article>
+          <article class="project-row" data-category="web">
+            <span class="project-number">07</span><div class="project-demo demo-wallet" aria-hidden="true"><small>BALANCE</small><b>$ 24.860</b><span>↑ Transfer</span><span>↓ Income</span></div><div><h3>Virtual Wallet</h3><p>Billetera digital full-stack con operaciones, persistencia de datos y una interfaz enfocada en claridad.</p></div><div class="project-meta"><span>2025</span><small>React · TypeScript · PostgreSQL · Prisma · Tailwind</small></div>
+          </article>
+          <article class="project-row" data-category="web">
+            <span class="project-number">08</span><div class="project-demo real-app-icon" aria-hidden="true"><img src="assets/icons/retro-game.png" alt="" /></div><div><h3>Retro Video Game Reservation</h3><p>Proyecto del primer track de Digital House. Como Front-end Tech Lead guié al equipo y definí una identidad visual propia, sumando animaciones para construir una experiencia más agradable.</p></div><div class="project-meta"><span>2023</span><small>Front-end TL · HTML · CSS · JavaScript · Java · AWS</small></div>
+          </article>
+          <article class="project-row" data-category="mobile">
+            <span class="project-number">09</span><div class="project-demo real-app-icon" aria-hidden="true"><img src="assets/icons/events-invitations.png" alt="" /></div><div><h3>Events & Invitations App</h3><p>Aplicación iOS para crear y gestionar eventos, desde invitaciones personalizadas hasta experiencias para bares y boliches.</p></div><div class="project-meta"><span>2021</span><small>Swift · SwiftUI · UIKit · Xcode</small></div>
+          </article>
+          <article class="project-row" data-category="mobile hardware">
+            <span class="project-number">10</span><div class="project-demo real-app-icon camera-slider-icon" aria-hidden="true"><img src="assets/icons/camera-slider.png" alt="" /></div><div><h3>Cámara Slider</h3><p>Proyecto final de secundaria: lideré las apps iOS y Android para controlar un slider motorizado. La app conectaba por Bluetooth, ofrecía joysticks, perfiles, control de velocidad e inclinación, seguimiento de punto, loop automático y timelapse con alertas.</p></div><div class="project-meta"><span>2019</span><small>Swift 5 · UIKit · BLE v4 · Serial · Microcontroller</small></div>
+          </article>
+          <article class="project-row" data-category="hardware">
+            <span class="project-number">11</span><div class="project-demo demo-monitor" aria-hidden="true"><b>36.7°</b><svg viewBox="0 0 180 45"><polyline points="0,28 20,28 30,8 43,40 57,22 75,28 96,28 108,10 120,38 136,26 180,26" /></svg><small>STABLE</small></div><div><h3>Neonatal Incubator</h3><p>Incubadora neonatal desarrollada en equipo durante quinto año. Creé la aplicación Windows que registraba el ambiente mediante sensores y actuadores, mostraba datos y gráficos en tiempo real, conservaba el historial y permitía configurar alarmas.</p></div><div class="project-meta"><span>2018</span><small>C# · Visual Studio · USB Serial · Sensors · Actuators</small></div>
+          </article>
+          <article class="project-row" data-category="web">
+            <span class="project-number">12</span><div class="project-demo demo-site" aria-hidden="true"><span></span><b>KASSIN</b><i></i><i></i><i></i></div><div><h3>Página Kassin</h3><p>Diseñé y desarrollé la web de Kassin a partir de una propuesta visual creada en Illustrator. El proyecto creció en dos versiones e incorporó galerías, animaciones y contenido multimedia.</p></div><div class="project-meta"><span>2018—2019</span><small>Illustrator · HTML · CSS · JavaScript</small></div>
+          </article>
+          <article class="project-row" data-category="hardware">
+            <span class="project-number">13</span><div class="project-demo demo-iot" aria-hidden="true"><b>HOME</b><span>LIGHTS<br /><i>ON</i></span><span>TEMP<br /><i>22°</i></span><span>SECURE<br /><i>YES</i></span></div><div><h3>Home Automation IoT</h3><p>Ecosistema de automatización del hogar desarrollado y evolucionado de forma continua.</p></div><div class="project-meta"><span>Desde 2017</span><small>ESP8266 · Raspberry Pi · HomeKit · Homebridge · Debian · Commands</small></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-shell">
+        <header class="dialog-header">
+          <div><span class="dialog-index" id="dialog-index">PROJECT / 01</span><h2 id="dialog-title">Proyecto</h2></div>
+          <button class="dialog-close" type="button" aria-label="Cerrar detalle">×</button>
+        </header>
+        <div class="dialog-content">
+          <div class="dialog-copy">
+            <p class="dialog-year" id="dialog-year"></p>
+            <p class="dialog-description" id="dialog-description"></p>
+            <p class="dialog-detail" id="dialog-detail"></p>
+            <a class="github-link" id="github-link" target="_blank" rel="noreferrer">Ver repositorio <span aria-hidden="true">↗</span></a>
+            <div class="dialog-tech" id="dialog-tech"></div>
+          </div>
+          <div class="media-stage">
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Imagen anterior">←</button>
+            <div class="device-canvas" id="device-canvas">
+              <img class="iphone-frame-overlay" src="assets/iphone-purple-frame.png" alt="" aria-hidden="true" />
+              <img class="ipod-frame-overlay" src="assets/ipod-touch-frame.png" alt="" aria-hidden="true" />
+              <div class="device-chrome" aria-hidden="true"><span></span><span></span><span></span></div>
+              <div class="browser-address" aria-hidden="true"><span id="browser-url">portfolio.local</span></div>
+              <div class="device-screen"><img class="screen-image" id="screen-image" alt="" /><span class="screen-count" id="screen-count">01 / 03</span><strong id="screen-label">Vista principal</strong><div class="screen-art" id="screen-art"><i></i><i></i><i></i></div></div>
+            </div>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Imagen siguiente">→</button>
+          </div>
+        </div>
+        <div class="dialog-footer"><span id="device-label">IPHONE CANVAS</span><span>Usá ← → para recorrer</span></div>
+      </div>
+    </dialog>
+
+    <footer>
+      <div><span class="footer-mark">FD</span><p>Diseño, código y producto.</p></div>
+      <a href="https://drive.google.com/file/d/1yabrSIuNtlPMVBScMvnrsPFbqsuQoODv/view?usp=drivesdk" target="_blank" rel="noreferrer">Ver portfolio completo <span aria-hidden="true">↗</span></a>
+      <p>Argentina · 2026</p>
+    </footer>
+    <script src="script.js?v=20260911-0300"></script>
+  </body>
+</html>
