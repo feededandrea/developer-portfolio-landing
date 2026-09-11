@@ -121,7 +121,14 @@ h1 { max-width: 1050px; margin: 24px 0 30px; font-size: clamp(3rem, 6.3vw, 6.7re
 .style-skeuo .mock-badge-on { color: #eafff2; background: linear-gradient(180deg, #6fd88f, #279a55); }
 .style-skeuo .mock-badge-off { color: #ffecec; background: linear-gradient(180deg, #ef7a83, #b8323f); }
 
-.style-glass .style-demo { background: linear-gradient(135deg, rgba(71,120,255,.22), rgba(99,230,255,.08)); }
+.style-glass .style-demo { position: relative; background: linear-gradient(135deg, rgba(71,120,255,.22), rgba(99,230,255,.08)); overflow: hidden; }
+.style-glass .style-demo::before,
+.style-glass .style-demo::after { position: absolute; z-index: 0; content: ""; border-radius: 50%; }
+.style-glass .style-demo::before { top: -36px; left: 2%; width: 150px; height: 150px; background: radial-gradient(circle at 38% 38%, var(--lime), transparent 68%); opacity: .9; }
+.style-glass .style-demo::after { right: 0; bottom: -62px; width: 210px; height: 210px; background: radial-gradient(circle at 42% 35%, var(--coral), transparent 68%); opacity: .85; }
+.style-glass .glass-blob { position: absolute; z-index: 0; top: 28%; left: 40%; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, var(--cyan), transparent 68%); opacity: .85; }
+.style-glass .mock-button,
+.style-glass .mock-badge { position: relative; z-index: 1; }
 .style-glass .mock-button { padding: 12px 20px; color: var(--white); background: var(--glass-strong); border: 1px solid rgba(255,255,255,.3); border-radius: 12px; box-shadow: 0 10px 26px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.35); backdrop-filter: blur(14px) saturate(150%); font-size: .88rem; font-weight: 700; }
 .style-glass .mock-badge { padding: 8px 14px; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; background: var(--glass); box-shadow: inset 0 1px 0 rgba(255,255,255,.25); backdrop-filter: blur(14px); font-size: .8rem; }
 .style-glass .mock-badge-on { color: #baffd6; }
