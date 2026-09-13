@@ -3,19 +3,24 @@ const projects = [...document.querySelectorAll(".project-row")];
 const languageButtons = [...document.querySelectorAll(".language-option")];
 const dialog = document.querySelector("#project-dialog");
 const selectors = [
-  ".nav-cta", ".hero-role", ".hero-intro", ".button-primary", ".text-link", ".index-label",
+  ".nav-interfaces", ".nav-projects", ".nav-cta", ".hero-role", ".hero-intro", ".button-primary", ".text-link", ".hero-tools-label", ".hero-apps-label", ".index-label",
   ".hero-index li:nth-child(1)", ".hero-index li:nth-child(2)", ".hero-index li:nth-child(3)", ".hero-index li:nth-child(4)",
-  ".interfaces-heading .eyebrow", ".interfaces-heading > p:last-child", ".projects-heading .eyebrow", "#projects-title",
+  ".interfaces-heading .eyebrow", ".interfaces-heading > p:last-child", ".design-styles-heading .eyebrow", "#design-styles-title", ".design-styles-heading > p:last-child",
+  ".style-skeuo .style-label", ".style-flat .mock-button", ".style-skeuo .mock-button", ".style-glass .mock-button", ".projects-heading .eyebrow", "#projects-title",
   ".filter[data-filter='all']", ".filter[data-filter='mobile']", ".filter[data-filter='web']", ".filter[data-filter='hardware']",
   "#github-link", ".dialog-footer span:last-child", "footer div p", "footer > a"
 ];
 const spanishStatic = Object.fromEntries(selectors.map((selector) => [selector, document.querySelector(selector).innerHTML]));
 const englishStatic = {
-  ".nav-cta": "View résumé <span aria-hidden='true'>↗</span>",
+  ".nav-interfaces": "Interfaces",
+  ".nav-projects": "Projects",
+  ".nav-cta": "View CV <i class='fa-solid fa-arrow-up-right-from-square' aria-hidden='true'></i>",
   ".hero-role": "I build digital products from end to end.",
   ".hero-intro": "I'm Federico D'Andrea, a developer focused on product and design. I work across iOS, macOS, Windows, web and IoT, connecting interfaces with data, streaming, Bluetooth and hardware. I care about animation, attention to detail and making every visual decision serve a purpose. I take projects from prototype to a version ready for real use.",
-  ".button-primary": "Explore projects <span aria-hidden='true'>↓</span>",
-  ".text-link": "View interfaces <span aria-hidden='true'>→</span>",
+  ".button-primary": "Explore projects <i class='fa-solid fa-arrow-down' aria-hidden='true'></i>",
+  ".text-link": "View interfaces <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>",
+  ".hero-tools-label": "Platforms & stack",
+  ".hero-apps-label": "My apps",
   ".index-label": "Expertise",
   ".hero-index li:nth-child(1)": "<span>01</span> Apple, Windows/.NET & mobile",
   ".hero-index li:nth-child(2)": "<span>02</span> Full-stack web & product",
@@ -23,16 +28,23 @@ const englishStatic = {
   ".hero-index li:nth-child(4)": "<span>04</span> Flat, glass, skeuomorphism & motion",
   ".interfaces-heading .eyebrow": "Visual selection",
   ".interfaces-heading > p:last-child": "A selection of the applications and experiences I have built.",
+  ".design-styles-heading .eyebrow": "Visual language",
+  "#design-styles-title": "Design styles",
+  ".design-styles-heading > p:last-child": "The same elements, a button and two status badges, interpreted through three different visual approaches.",
+  ".style-skeuo .style-label": "Skeuomorphic",
+  ".style-flat .mock-button": "Add",
+  ".style-skeuo .mock-button": "+ Add",
+  ".style-glass .mock-button": "Add",
   ".projects-heading .eyebrow": "Selected archive / 2017—2026",
   "#projects-title": "Projects",
   ".filter[data-filter='all']": "All",
   ".filter[data-filter='mobile']": "Mobile",
   ".filter[data-filter='web']": "Web",
   ".filter[data-filter='hardware']": "IoT",
-  "#github-link": "View repository <span aria-hidden='true'>↗</span>",
+  "#github-link": "<i class='fa-brands fa-github' aria-hidden='true'></i> View repository <i class='fa-solid fa-arrow-up-right-from-square' aria-hidden='true'></i>",
   ".dialog-footer span:last-child": "Use ← → to browse",
   "footer div p": "Design, code and product.",
-  "footer > a": "View full portfolio <span aria-hidden='true'>↗</span>"
+  "footer > a": "View full portfolio <i class='fa-solid fa-arrow-up-right-from-square' aria-hidden='true'></i>"
 };
 
 const englishCards = {
@@ -133,12 +145,23 @@ function applyLanguage(next) {
   const copy = language === "es" ? spanishStatic : englishStatic;
   Object.entries(copy).forEach(([selector, html]) => document.querySelector(selector).innerHTML = html);
   document.querySelector("nav").ariaLabel = language === "es" ? "Navegación principal" : "Main navigation";
+  document.querySelector(".wordmark").ariaLabel = language === "es" ? "Volver al inicio" : "Back to top";
   document.querySelector(".language-switch").ariaLabel = language === "es" ? "Idioma del sitio" : "Site language";
+  document.querySelector(".hero-apps").ariaLabel = language === "es" ? "Aplicaciones destacadas" : "Featured applications";
+  document.querySelector(".hero-tools").ariaLabel = language === "es" ? "Plataformas y tecnologías" : "Platforms and technologies";
+  document.querySelector(".hero-index").ariaLabel = language === "es" ? "Áreas de experiencia" : "Areas of expertise";
+  document.querySelectorAll("[data-app-project]").forEach(button => {
+    button.ariaLabel = `${language === "es" ? "Abrir" : "Open"} ${button.dataset.appProject}`;
+  });
   document.querySelector(".filters").ariaLabel = language === "es" ? "Filtrar proyectos" : "Filter projects";
   document.querySelector(".interface-viewer").ariaLabel = language === "es" ? "Galería de interfaces de aplicaciones" : "Application interface gallery";
   document.querySelector(".dialog-close").ariaLabel = language === "es" ? "Cerrar detalle" : "Close project details";
   document.querySelector(".carousel-prev").ariaLabel = language === "es" ? "Imagen anterior" : "Previous image";
   document.querySelector(".carousel-next").ariaLabel = language === "es" ? "Imagen siguiente" : "Next image";
+  const languageSwitch = document.querySelector(".language-switch");
+  languageSwitch.classList.remove("is-changing");
+  void languageSwitch.offsetWidth;
+  languageSwitch.classList.add("is-changing");
   languageButtons.forEach(button => { const on = button.dataset.language === language; button.classList.toggle("is-active", on); button.setAttribute("aria-pressed", on); });
   projects.forEach(project => {
     const title = titleOf(project), year = project.querySelector(".project-meta > span");
@@ -162,6 +185,10 @@ projects.forEach((project,index) => {
   project.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openProject(project,index); } });
 });
 languageButtons.forEach(button => button.addEventListener("click", () => applyLanguage(button.dataset.language)));
+document.querySelectorAll("[data-app-project]").forEach(button => button.addEventListener("click", () => {
+  const index = projects.findIndex(project => titleOf(project) === button.dataset.appProject);
+  if (index >= 0) openProject(projects[index], index);
+}));
 document.querySelector(".dialog-close").addEventListener("click", () => dialog.close());
 document.querySelector(".carousel-prev").addEventListener("click", () => moveSlide(-1));
 document.querySelector(".carousel-next").addEventListener("click", () => moveSlide(1));
