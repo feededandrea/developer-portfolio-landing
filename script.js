@@ -104,11 +104,15 @@ function animateLanguageChange() {
   const animated = [...new Set([
     ...selectors.map(selector => document.querySelector(selector)),
     ...projects.map(project => project.querySelector("p"))
-  ].filter(Boolean))];
+  ].filter(element => element && element.getClientRects().length))].sort((a, b) => {
+    const aRect = a.getBoundingClientRect();
+    const bRect = b.getBoundingClientRect();
+    return Math.abs(aRect.top - bRect.top) > 24 ? aRect.top - bRect.top : aRect.left - bRect.left;
+  });
   animated.forEach((element, index) => element.animate([
     { clipPath: "inset(0 100% 0 0)", opacity: .3, transform: "translateX(-5px)" },
     { clipPath: "inset(0 0 0 0)", opacity: 1, transform: "translateX(0)" }
-  ], { duration: 230, delay: Math.min(index * 5, 80), easing: "cubic-bezier(.2,.8,.2,1)", fill: "both" }));
+  ], { duration: 240, delay: Math.min(index * 11, 145), easing: "cubic-bezier(.2,.8,.2,1)", fill: "both" }));
 }
 
 function titleOf(project) { return project.dataset.projectTitle || project.querySelector("h3").textContent; }
@@ -166,6 +170,7 @@ function openProject(project, index, preserveSlide = false) {
   renderSlide(); if (!dialog.open) dialog.showModal();
 }
 function applyLanguage(next) {
+  if (hasAppliedLanguage && next === language) return;
   language = next; localStorage.setItem("portfolio-language", language); document.documentElement.lang = language;
   document.title = language === "es" ? "Federico D'Andrea | Portfolio de desarrollo" : "Federico D'Andrea | Developer Portfolio";
   document.querySelector("meta[name='description']").content = language === "es" ? "Portfolio de desarrollo de producto, mobile, web e IoT." : "Product development portfolio spanning mobile, web and IoT.";
