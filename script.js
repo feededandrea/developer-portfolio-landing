@@ -69,7 +69,7 @@ const englishCards = {
 };
 
 const projectData = {
-  "AutoArtist": ["mac", ["Canvas creativo","Biblioteca","Resultado"], ["Canvas","Library","Output"], "Experiencia web orientada a la creación visual, con gestión de datos y una interfaz rápida construida sobre un stack moderno.", "A visual-creation web experience with data management and a fast interface built on a modern stack."],
+  "AutoArtist": ["browser", ["Página principal"], ["Home page"], "Experiencia web orientada a la creación visual, con gestión de datos y una interfaz rápida construida sobre un stack moderno.", "A visual-creation web experience with data management and a fast interface built on a modern stack.", "https://autoartist.ifeede.net", ["assets/autoartist/01-home.png"], ["browser"], "autoartist.ifeede.net", "production"],
   "Booming · Dinesys": ["iphone", ["Inicio","Clientes"], ["Home","Customers"], "Proyecto de Dinesys para acompañar la actividad comercial desde iOS. La galería muestra una selección acotada de sus interfaces junto al resto de los trabajos.", "A Dinesys project supporting field sales activity on iOS. The gallery presents a focused selection of its interfaces alongside the rest of the work.", null, ["assets/booming/01-dashboard.png","assets/booming/02-customers.png"], ["iphone","iphone"]],
   "OBS Cam iOS & macOS": ["mac", ["Hub de cámara en macOS","Cámara iOS"], ["macOS camera hub","iOS camera"], "Sistema de cámara y streaming entre dispositivos Apple mediante conexión cableada o Wi-Fi en tiempo real.", "A real-time camera and streaming system connecting Apple devices over cable or Wi-Fi.", "https://github.com/feededandrea/OBSPhoneCam", ["assets/obs/01-macos.png","assets/obs/02-ios.png"], ["mac","iphone-landscape"]],
   "LED Pants · iOS & macOS": ["mac", ["Editor de timeline en macOS","Control desde iOS"], ["macOS timeline editor","iOS controller"], "iSyncro es una aplicación para Apple Watch, iOS y macOS que controla por Wi-Fi un ESP32 conectado a dos tiras LED instaladas en un pantalón. Permite usar colores y efectos estáticos o programar secuencias sincronizadas con una pista de audio mediante timeline y keyframes. Incluye importación y exportación de archivos programados sobre canciones, caché automática, playlists y un control remoto para Apple Watch que permite manejar la reproducción en vivo.", "iSyncro is an Apple Watch, iOS and macOS app that controls an ESP32 connected to two LED strips installed in a pair of pants over Wi-Fi. It supports static colors and effects as well as timeline and keyframe sequences synchronized to an audio track. It includes import and export of song-based sequence files, automatic caching, playlists and an Apple Watch remote for controlling live playback.", "https://github.com/feededandrea/iSyncro.git", ["assets/led-pants/01-macos.png","assets/led-pants/02-ios.png"], ["mac","iphone"]],
@@ -144,7 +144,7 @@ function renderSlide() {
 function moveSlide(direction) { slide = (slide + direction + slides.length) % slides.length; renderSlide(); }
 function openProject(project, index, preserveSlide = false) {
   const title = titleOf(project);
-  const [device, esSlides, enSlides, esDetail, enDetail, github, projectImages, projectDevices, browserUrl] = projectData[title];
+  const [device, esSlides, enSlides, esDetail, enDetail, linkUrl, projectImages, projectDevices, browserUrl, linkType] = projectData[title];
   activeProject = project; activeIndex = index;
   ui.title.textContent = title;
   ui.index.textContent = `PROJECT / ${String(index + 1).padStart(2,"0")}`;
@@ -154,7 +154,14 @@ function openProject(project, index, preserveSlide = false) {
   ui.tech.replaceChildren(...project.querySelector(".project-meta small").textContent.split(" · ").map(text => Object.assign(document.createElement("span"), {textContent:text})));
   ui.canvas.dataset.baseDevice = device;
   ui.browserUrl.textContent = browserUrl || "portfolio.local";
-  ui.github.classList.toggle("is-visible", Boolean(github)); if (github) ui.github.href = github;
+  ui.github.classList.toggle("is-visible", Boolean(linkUrl));
+  if (linkUrl) {
+    ui.github.href = linkUrl;
+    ui.github.innerHTML = linkType === "production"
+      ? "<i class='fa-solid fa-link' aria-hidden='true'></i> Link <i class='fa-solid fa-arrow-up-right-from-square' aria-hidden='true'></i>"
+      : `<i class='fa-brands fa-github' aria-hidden='true'></i> ${language === "es" ? "Ver repositorio" : "View repository"} <i class='fa-solid fa-arrow-up-right-from-square' aria-hidden='true'></i>`;
+    ui.github.ariaLabel = linkType === "production" ? `${title}: Link` : `${language === "es" ? "Ver repositorio de" : "View repository for"} ${title}`;
+  }
   slides = language === "es" ? esSlides : enSlides; images = projectImages || []; slideDevices = projectDevices || slides.map(() => device); if (!preserveSlide) slide = 0;
   renderSlide(); if (!dialog.open) dialog.showModal();
 }

@@ -75,7 +75,7 @@ h1 { max-width: 1050px; margin: 24px 0 30px; font-size: clamp(3rem, 6.3vw, 6.7re
 .tool-icon:nth-child(8) { background: linear-gradient(145deg,#4b8de4,#1c53a0); }
 .tool-icon:nth-child(9) { background: linear-gradient(145deg,#4cba74,#197445); }
 .tool-icon:nth-child(10) { background: linear-gradient(145deg,#f47b52,#d94f2c); }
-.tool-icon:nth-child(11) { background: #fff; }
+.tool-icon:nth-child(11) { background: #17191d; }
 .cpp-mark { color: #fff; font: 700 .72rem "DM Mono", monospace; }
 .claude-mark { color: #fff; font-size: 1.45rem; line-height: 1; }
 .tool-icon-codex { padding: 0; overflow: visible; }
@@ -154,10 +154,10 @@ h1 { max-width: 1050px; margin: 24px 0 30px; font-size: clamp(3rem, 6.3vw, 6.7re
 .mock-badge::before { width: 8px; height: 8px; content: ""; border-radius: 50%; background: currentColor; }
 
 .style-flat .style-demo { background: #12151d; }
-.style-flat .mock-button { padding: 9px 30px; color: #11150a; background: var(--lime); border-radius: 8px; font-size: .88rem; font-weight: 800; }
+.style-flat .mock-button { padding: 9px 30px; color: #fff; background: #5577df; border-radius: 8px; font-size: .88rem; font-weight: 800; }
 .style-flat .mock-badge { padding: 8px 14px; border-radius: 8px; font-size: .8rem; }
-.style-flat .mock-badge-on { color: #06272d; background: var(--cyan); }
-.style-flat .mock-badge-off { color: #37090f; background: var(--coral); }
+.style-flat .mock-badge-on { color: #fff; background: #2e9b78; }
+.style-flat .mock-badge-off { color: #fff; background: #ca5965; }
 .style-flat .mock-button:hover,
 .style-flat .mock-badge:hover { filter: brightness(1.08); }
 .style-flat .mock-button:active,
