@@ -124,6 +124,8 @@ h1 { max-width: 1050px; margin: 24px 0 30px; font-size: clamp(3rem, 6.3vw, 6.7re
 .interface-viewer { display: grid; grid-template-columns: repeat(4, minmax(150px, 1fr)); gap: 28px; align-items: end; margin-top: 50px; padding: 38px 28px 28px; border: 1px solid rgba(255,255,255,.12); border-radius: 22px; background: rgba(255,255,255,.045); box-shadow: inset 0 1px 0 rgba(255,255,255,.1); overflow-x: auto; }
 .interface-viewer figure { display: grid; justify-items: center; gap: 15px; min-width: 150px; margin: 0; }
 .interface-viewer .phone-frame { width: min(100%, 190px); transform: none; }
+.interface-screen { display: block; width: 100%; height: 100%; border-radius: 23px; object-fit: cover; object-position: center top; }
+.interface-screen-obs { object-position: 42% center; }
 .interface-viewer figcaption { color: #cbd1dc; font: .72rem "DM Mono", monospace; text-align: center; }
 .screen-obs { background: linear-gradient(145deg, #222630, #101217); }
 .screen-led { background: linear-gradient(145deg, #7d325f, #24213f); }
