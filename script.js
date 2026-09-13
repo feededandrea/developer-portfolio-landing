@@ -2,6 +2,10 @@ const filters = [...document.querySelectorAll(".filter")];
 const projects = [...document.querySelectorAll(".project-row")];
 const languageButtons = [...document.querySelectorAll(".language-option")];
 const dialog = document.querySelector("#project-dialog");
+document.querySelectorAll("a, button, img").forEach(element => {
+  element.draggable = false;
+  element.addEventListener("dragstart", event => event.preventDefault());
+});
 const selectors = [
   ".nav-interfaces", ".nav-projects", ".nav-cta", ".hero-role", ".hero-intro", ".button-primary", ".text-link", ".hero-tools-label", ".hero-apps-label", ".index-label",
   ".hero-index li:nth-child(1)", ".hero-index li:nth-child(2)", ".hero-index li:nth-child(3)", ".hero-index li:nth-child(4)",
@@ -32,9 +36,9 @@ const englishStatic = {
   "#design-styles-title": "Design styles",
   ".design-styles-heading > p:last-child": "The same elements, a button and two status badges, interpreted through three different visual approaches.",
   ".style-skeuo .style-label": "Skeuomorphic",
-  ".style-flat .mock-button": "Add",
-  ".style-skeuo .mock-button": "+ Add",
-  ".style-glass .mock-button": "Add",
+  ".style-flat .mock-button": "<i class='fa-solid fa-plus' aria-hidden='true'></i> Add",
+  ".style-skeuo .mock-button": "<i class='fa-solid fa-plus' aria-hidden='true'></i> Add",
+  ".style-glass .mock-button": "<i class='fa-solid fa-plus' aria-hidden='true'></i> Add",
   ".projects-heading .eyebrow": "Selected archive / 2017—2026",
   "#projects-title": "Projects",
   ".filter[data-filter='all']": "All",
@@ -90,6 +94,22 @@ const ui = {
 };
 let language = localStorage.getItem("portfolio-language") === "en" ? "en" : "es";
 let slides = [], images = [], slideDevices = [], slide = 0, activeProject = null, activeIndex = 0;
+let hasAppliedLanguage = false;
+
+function animateLanguageChange() {
+  const wipe = document.querySelector(".language-wipe");
+  wipe.classList.remove("is-active");
+  void wipe.offsetWidth;
+  wipe.classList.add("is-active");
+  const animated = [...new Set([
+    ...selectors.map(selector => document.querySelector(selector)),
+    ...projects.map(project => project.querySelector("p"))
+  ].filter(Boolean))];
+  animated.forEach((element, index) => element.animate([
+    { clipPath: "inset(0 100% 0 0)", opacity: .3, transform: "translateX(-5px)" },
+    { clipPath: "inset(0 0 0 0)", opacity: 1, transform: "translateX(0)" }
+  ], { duration: 230, delay: Math.min(index * 5, 80), easing: "cubic-bezier(.2,.8,.2,1)", fill: "both" }));
+}
 
 function titleOf(project) { return project.dataset.projectTitle || project.querySelector("h3").textContent; }
 function fitBrowserToImage() {
@@ -171,6 +191,8 @@ function applyLanguage(next) {
     project.ariaLabel = `${language === "es" ? "Abrir detalle de" : "Open details for"} ${title}`;
   });
   if (dialog.open && activeProject) openProject(activeProject, activeIndex, true);
+  if (hasAppliedLanguage && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) animateLanguageChange();
+  hasAppliedLanguage = true;
 }
 
 filters.forEach(filter => filter.addEventListener("click", () => {
@@ -189,6 +211,15 @@ document.querySelectorAll("[data-app-project]").forEach(button => button.addEven
   const index = projects.findIndex(project => titleOf(project) === button.dataset.appProject);
   if (index >= 0) openProject(projects[index], index);
 }));
+document.querySelectorAll("[data-tooltip]").forEach(item => {
+  const tooltip = item.closest(".hero-strip").querySelector(".hero-tooltip");
+  const showTooltip = () => { tooltip.textContent = item.dataset.tooltip; tooltip.classList.add("is-visible"); };
+  const hideTooltip = () => tooltip.classList.remove("is-visible");
+  item.addEventListener("mouseenter", showTooltip);
+  item.addEventListener("mouseleave", hideTooltip);
+  item.addEventListener("focus", showTooltip);
+  item.addEventListener("blur", hideTooltip);
+});
 document.querySelector(".dialog-close").addEventListener("click", () => dialog.close());
 document.querySelector(".carousel-prev").addEventListener("click", () => moveSlide(-1));
 document.querySelector(".carousel-next").addEventListener("click", () => moveSlide(1));
