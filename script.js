@@ -69,7 +69,7 @@ const englishCards = {
 };
 
 const projectData = {
-  "AutoArtist": ["browser", ["Página principal"], ["Home page"], "Experiencia web orientada a la creación visual, con gestión de datos y una interfaz rápida construida sobre un stack moderno.", "A visual-creation web experience with data management and a fast interface built on a modern stack.", "https://autoartist.ifeede.net", ["assets/autoartist/01-home.png"], ["browser"], "autoartist.ifeede.net", "production"],
+  "AutoArtist": ["browser", ["Página principal","Panel de gestión","Editor visual"], ["Home page","Management dashboard","Visual editor"], "Experiencia web orientada a la creación visual, con gestión de datos y una interfaz rápida construida sobre un stack moderno.", "A visual-creation web experience with data management and a fast interface built on a modern stack.", "https://autoartist.ifeede.net", ["assets/autoartist/01-home.png","assets/autoartist/03-dashboard.png","assets/autoartist/02-editor.png"], ["browser","browser","browser"], "autoartist.ifeede.net", "production"],
   "Booming · Dinesys": ["iphone", ["Inicio","Clientes"], ["Home","Customers"], "Proyecto de Dinesys para acompañar la actividad comercial desde iOS. La galería muestra una selección acotada de sus interfaces junto al resto de los trabajos.", "A Dinesys project supporting field sales activity on iOS. The gallery presents a focused selection of its interfaces alongside the rest of the work.", null, ["assets/booming/01-dashboard.png","assets/booming/02-customers.png"], ["iphone","iphone"]],
   "OBS Cam iOS & macOS": ["mac", ["Hub de cámara en macOS","Cámara iOS"], ["macOS camera hub","iOS camera"], "Sistema de cámara y streaming entre dispositivos Apple mediante conexión cableada o Wi-Fi en tiempo real.", "A real-time camera and streaming system connecting Apple devices over cable or Wi-Fi.", "https://github.com/feededandrea/OBSPhoneCam", ["assets/obs/01-macos.png","assets/obs/02-ios.png"], ["mac","iphone-landscape"]],
   "LED Pants · iOS & macOS": ["mac", ["Editor de timeline en macOS","Control desde iOS"], ["macOS timeline editor","iOS controller"], "iSyncro es una aplicación para Apple Watch, iOS y macOS que controla por Wi-Fi un ESP32 conectado a dos tiras LED instaladas en un pantalón. Permite usar colores y efectos estáticos o programar secuencias sincronizadas con una pista de audio mediante timeline y keyframes. Incluye importación y exportación de archivos programados sobre canciones, caché automática, playlists y un control remoto para Apple Watch que permite manejar la reproducción en vivo.", "iSyncro is an Apple Watch, iOS and macOS app that controls an ESP32 connected to two LED strips installed in a pair of pants over Wi-Fi. It supports static colors and effects as well as timeline and keyframe sequences synchronized to an audio track. It includes import and export of song-based sequence files, automatic caching, playlists and an Apple Watch remote for controlling live playback.", "https://github.com/feededandrea/iSyncro.git", ["assets/led-pants/01-macos.png","assets/led-pants/02-ios.png"], ["mac","iphone"]],
@@ -92,7 +92,8 @@ const ui = {
   canvas: document.querySelector("#device-canvas"), device: document.querySelector("#device-label"), count: document.querySelector("#screen-count"),
   label: document.querySelector("#screen-label"), github: document.querySelector("#github-link"), image: document.querySelector("#screen-image"), art: document.querySelector("#screen-art"), browserUrl: document.querySelector("#browser-url")
 };
-let language = localStorage.getItem("portfolio-language") === "en" ? "en" : "es";
+const languageParam = new URLSearchParams(window.location.search).get("lg");
+let language = ["es", "en"].includes(languageParam) ? languageParam : (localStorage.getItem("portfolio-language") === "en" ? "en" : "es");
 let slides = [], images = [], slideDevices = [], slide = 0, activeProject = null, activeIndex = 0;
 let hasAppliedLanguage = false;
 
@@ -171,6 +172,11 @@ function openProject(project, index, preserveSlide = false) {
 }
 function applyLanguage(next) {
   if (hasAppliedLanguage && next === language) return;
+  if (hasAppliedLanguage) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("lg", next);
+    window.history.replaceState({}, "", url);
+  }
   language = next; localStorage.setItem("portfolio-language", language); document.documentElement.lang = language;
   document.title = language === "es" ? "Federico D'Andrea | Portfolio de desarrollo" : "Federico D'Andrea | Developer Portfolio";
   document.querySelector("meta[name='description']").content = language === "es" ? "Portfolio de desarrollo de producto, mobile, web e IoT." : "Product development portfolio spanning mobile, web and IoT.";
