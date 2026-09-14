@@ -82,8 +82,8 @@ h1 { max-width: 1050px; margin: 24px 0 30px; font-size: clamp(3rem, 6.3vw, 6.7re
 .claude-mark { color: #fff; font-size: 1.45rem; line-height: 1; }
 .tool-icon-codex { padding: 0; overflow: visible; }
 .tool-icon-codex > img { display: block; width: 100%; height: 100%; border-radius: inherit; object-fit: cover; }
-.hero-apps { display: flex; align-items: center; justify-content: center; gap: 11px; width: 100%; max-width: 100%; padding: 9px 11px; border: 1px solid rgba(255,255,255,.14); border-radius: 16px; background: rgba(5,7,12,.42); box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 16px 32px rgba(0,0,0,.22); backdrop-filter: blur(18px); }
-.hero-apps button { position: relative; width: 48px; height: 48px; padding: 0; border: 1px solid rgba(255,255,255,.2); border-radius: 11px; background: #151922; box-shadow: 0 6px 12px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.18); cursor: pointer; transition: transform .18s cubic-bezier(.2,.9,.25,1.2), box-shadow .18s ease, border-color .18s ease; }
+.hero-apps { display: flex; align-items: center; justify-content: center; gap: clamp(6px,1vw,11px); width: 100%; max-width: 100%; padding: 9px 11px; border: 1px solid rgba(255,255,255,.14); border-radius: 16px; background: rgba(5,7,12,.42); box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 16px 32px rgba(0,0,0,.22); backdrop-filter: blur(18px); }
+.hero-apps button { position: relative; width: clamp(42px,3vw,48px); height: clamp(42px,3vw,48px); padding: 0; border: 1px solid rgba(255,255,255,.2); border-radius: 11px; background: #151922; box-shadow: 0 6px 12px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.18); cursor: pointer; transition: transform .18s cubic-bezier(.2,.9,.25,1.2), box-shadow .18s ease, border-color .18s ease; }
 .hero-apps button:hover { z-index: 1; border-color: rgba(99,230,255,.65); box-shadow: 0 10px 20px rgba(0,0,0,.42), 0 0 0 2px rgba(99,230,255,.12); transform: translateY(-5px) scale(1.07); }
 .hero-apps button:active { transform: translateY(-1px) scale(.96); }
 .hero-apps button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
