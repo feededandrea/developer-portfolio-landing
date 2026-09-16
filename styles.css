@@ -77,7 +77,9 @@ h1 { max-width: 1050px; margin: 24px 0 30px; font-size: clamp(3rem, 6.3vw, 6.7re
 .tool-icon:nth-child(10) { background: linear-gradient(145deg,#f47b52,#d94f2c); }
 .tool-icon:nth-child(11) { background: #17191d; }
 .tool-icon:nth-child(12) { background: linear-gradient(145deg,#5b8fe8,#2451a4); }
-.tool-icon-docker { color: #2496ed; background: linear-gradient(145deg,#f4fbff,#b8daf1); }
+.tool-icon.tool-icon-docker { color: #fff; background: linear-gradient(145deg,#2496ed,#116bb0); }
+.tool-icon.tool-icon-iot { color: #fff; background: linear-gradient(145deg,#42a89d,#176b68); }
+.tool-icon.tool-icon-claude { color: #fff; background: linear-gradient(145deg,#f47b52,#d94f2c); }
 .cpp-mark { color: #fff; font: 700 .72rem "DM Mono", monospace; }
 .csharp-mark { color: #fff; font: 700 .9rem "DM Mono", monospace; }
 .claude-mark { color: #fff; font-size: 1.45rem; line-height: 1; }
