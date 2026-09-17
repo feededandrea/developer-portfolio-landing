@@ -116,7 +116,27 @@ function animateLanguageChange() {
   ], { duration: 240, delay: Math.min(index * 11, 145), easing: "cubic-bezier(.2,.8,.2,1)", fill: "both" }));
 }
 
+const projectSlugs = {
+  "AutoArtist": "autoartist", "Booming · Dinesys": "booming",
+  "OBS Cam iOS & macOS": "obs-cam", "LED Pants · iOS & macOS": "isyncro",
+  "iFeedeBook": "ifeedebook", "MSN Fun App": "msn",
+  "Laboratorio de Edafología": "laboratorio-edafologia", "Virtual Wallet": "virtual-wallet",
+  "Retro Video Game Reservation": "pixel-replay", "Events & Invitations App": "events",
+  "Cámara Slider": "slideaway", "Neonatal Incubator": "neonatal-incubator",
+  "Página Kassin": "kassin", "Home Automation IoT": "home-automation"
+};
 function titleOf(project) { return project.dataset.projectTitle || project.querySelector("h3").textContent; }
+function projectUrl(title) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("project", projectSlugs[title]);
+  return url;
+}
+function openProjectFromUrl() {
+  const slug = new URL(window.location.href).searchParams.get("project");
+  const index = projects.findIndex(project => projectSlugs[titleOf(project)] === slug);
+  if (index >= 0) openProject(projects[index], index);
+  else if (dialog.open) dialog.close();
+}
 function fitBrowserToImage() {
   if (ui.canvas.dataset.device !== "browser" || !ui.image.naturalWidth || !ui.image.naturalHeight) {
     ui.canvas.style.removeProperty("--browser-ratio");
@@ -170,6 +190,7 @@ function openProject(project, index, preserveSlide = false) {
   }
   slides = language === "es" ? esSlides : enSlides; images = projectImages || []; slideDevices = projectDevices || slides.map(() => device); if (!preserveSlide) slide = 0;
   renderSlide(); if (!dialog.open) dialog.showModal();
+  window.history.replaceState({}, "", projectUrl(title));
 }
 function applyLanguage(next) {
   if (hasAppliedLanguage && next === language) return;
@@ -212,6 +233,7 @@ function applyLanguage(next) {
   if (dialog.open && activeProject) openProject(activeProject, activeIndex, true);
   if (hasAppliedLanguage && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) animateLanguageChange();
   hasAppliedLanguage = true;
+  document.querySelectorAll(".interface-project-link").forEach(link => { link.href = projectUrl(link.dataset.appProject); });
 }
 
 filters.forEach(filter => filter.addEventListener("click", () => {
@@ -226,7 +248,18 @@ projects.forEach((project,index) => {
   project.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openProject(project,index); } });
 });
 languageButtons.forEach(button => button.addEventListener("click", () => applyLanguage(button.dataset.language)));
-document.querySelectorAll("[data-app-project]").forEach(button => button.addEventListener("click", () => {
+const interfaceProjects = ["Booming · Dinesys", "OBS Cam iOS & macOS", "LED Pants · iOS & macOS", "Cámara Slider"];
+document.querySelectorAll(".interface-viewer figure").forEach((figure, index) => {
+  const link = document.createElement("a");
+  link.className = "interface-project-link";
+  link.dataset.appProject = interfaceProjects[index];
+  link.href = projectUrl(interfaceProjects[index]);
+  link.append(...figure.childNodes);
+  figure.append(link);
+});
+document.querySelectorAll("[data-app-project]").forEach(button => button.addEventListener("click", event => {
+  if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
   const index = projects.findIndex(project => titleOf(project) === button.dataset.appProject);
   if (index >= 0) openProject(projects[index], index);
 }));
@@ -243,6 +276,13 @@ document.querySelector(".dialog-close").addEventListener("click", () => dialog.c
 document.querySelector(".carousel-prev").addEventListener("click", () => moveSlide(-1));
 document.querySelector(".carousel-next").addEventListener("click", () => moveSlide(1));
 ui.image.addEventListener("load", fitBrowserToImage);
+dialog.addEventListener("close", () => {
+  const url = new URL(window.location.href);
+  url.searchParams.delete("project");
+  window.history.replaceState({}, "", url);
+});
+window.addEventListener("popstate", openProjectFromUrl);
 dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close(); });
 dialog.addEventListener("keydown", event => { if (event.key === "ArrowLeft") moveSlide(-1); if (event.key === "ArrowRight") moveSlide(1); });
 applyLanguage(language);
+openProjectFromUrl();

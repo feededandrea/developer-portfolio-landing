@@ -136,6 +136,10 @@ h1 { max-width: 1050px; margin: 24px 0 30px; font-size: clamp(3rem, 6.3vw, 6.7re
 .landscape-phone { position: absolute; right: -4px; bottom: 2px; width: 76%; aspect-ratio: 2.17; padding: 6px; border: 1px solid rgba(255,255,255,.36); border-radius: 18px; background: #10131a; box-shadow: 0 18px 34px rgba(0,0,0,.55), inset 0 1px 1px rgba(255,255,255,.25); transform: rotate(-3deg); }
 .landscape-phone img { display: block; width: 100%; height: 100%; border-radius: 12px; object-fit: cover; }
 .interface-viewer figcaption { color: #cbd1dc; font: .72rem "DM Mono", monospace; text-align: center; }
+.interface-project-link { display: grid; justify-items: center; gap: 15px; width: 100%; border-radius: 12px; transition: background-color .18s; }
+.interface-project-link:hover { background: rgba(255,255,255,.04); }
+.interface-project-link:hover figcaption { color: var(--cyan); }
+.interface-project-link:focus-visible { outline: 2px solid var(--cyan); outline-offset: 6px; }
 .screen-obs { background: linear-gradient(145deg, #222630, #101217); }
 .screen-led { background: linear-gradient(145deg, #7d325f, #24213f); }
 .screen-slider { background: linear-gradient(145deg, #13485b, #152538); }
