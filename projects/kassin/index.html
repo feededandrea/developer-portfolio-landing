@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <base href="/" />
-    <script>const destination = new URL('/', location.origin); destination.search = location.search; destination.searchParams.set('project', "kassin"); if (!destination.searchParams.has('lg')) destination.searchParams.set('lg', 'es'); destination.hash = location.hash; location.replace(destination.href);</script>
+    <script>if (location.pathname.startsWith('/projects/')) { const destination = new URL('/', location.origin); destination.search = location.search; destination.searchParams.set('project', "kassin"); if (!destination.searchParams.has('lg')) destination.searchParams.set('lg', 'es'); destination.hash = location.hash; location.replace(destination.href); }</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0b0c0f" />

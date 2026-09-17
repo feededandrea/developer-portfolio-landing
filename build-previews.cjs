@@ -37,7 +37,7 @@ for (const [title, slug] of Object.entries(slugs)) {
     <meta name="twitter:description" content="${escape(detail)}" />
     <meta name="twitter:image" content="${origin}/${image}" />`;
   const page = html
-    .replace('<head>', `<head>\n    <base href="/" />\n    <script>const destination = new URL('/', location.origin); destination.search = location.search; destination.searchParams.set('project', ${JSON.stringify(slug)}); if (!destination.searchParams.has('lg')) destination.searchParams.set('lg', 'es'); destination.hash = location.hash; location.replace(destination.href);</script>`)
+    .replace('<head>', `<head>\n    <base href="/" />\n    <script>if (location.pathname.startsWith('/projects/')) { const destination = new URL('/', location.origin); destination.search = location.search; destination.searchParams.set('project', ${JSON.stringify(slug)}); if (!destination.searchParams.has('lg')) destination.searchParams.set('lg', 'es'); destination.hash = location.hash; location.replace(destination.href); }</script>`)
     .replace(/<title>[^<]*<\/title>/, `<title>${escape(title)} | Federico D'Andrea</title>`)
     .replace(/<meta name="description" content="[^"]*"\s*\/>/, `<meta name="description" content="${escape(detail)}" />`)
     .replace('</head>', `${metadata}\n  </head>`);
