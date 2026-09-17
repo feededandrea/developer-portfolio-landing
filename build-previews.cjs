@@ -1,6 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
+const {execFileSync} = require('node:child_process');
 const root = __dirname;
 const source = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
 function readObject(name, endMarker) {
@@ -17,7 +18,9 @@ const escape = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;',
 for (const [title, slug] of Object.entries(slugs)) {
   const detail = data[title][3];
   const sourceImage = data[title][6]?.[0];
-  const image = !sourceImage || sourceImage.endsWith('.webp') ? `assets/previews/${slug}.png` : sourceImage;
+  const image = `assets/previews/${slug}.png`;
+  const input = !sourceImage || sourceImage.endsWith('.webp') ? image : sourceImage;
+  execFileSync('sips', ['-Z', '1200', path.join(root, input), '--out', path.join(root, image)], {stdio: 'pipe'});
   const url = `${origin}/projects/${slug}/`;
   const metadata = `
     <base href="/" />
@@ -28,6 +31,7 @@ for (const [title, slug] of Object.entries(slugs)) {
     <meta property="og:description" content="${escape(detail)}" />
     <meta property="og:url" content="${url}" />
     <meta property="og:image" content="${origin}/${image}" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:alt" content="${escape(title)}: ${escape(data[title][1][0])}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escape(title)} | Federico D'Andrea" />
