@@ -128,11 +128,13 @@ const projectSlugs = {
 function titleOf(project) { return project.dataset.projectTitle || project.querySelector("h3").textContent; }
 function projectUrl(title) {
   const url = new URL(window.location.href);
-  url.searchParams.set("project", projectSlugs[title]);
+  url.pathname = `/projects/${projectSlugs[title]}/`;
+  url.searchParams.delete("project");
   return url;
 }
 function openProjectFromUrl() {
-  const slug = new URL(window.location.href).searchParams.get("project");
+  const url = new URL(window.location.href);
+  const slug = url.searchParams.get("project") || url.pathname.match(/^\/projects\/([a-z0-9-]+)\/?$/)?.[1];
   const index = projects.findIndex(project => projectSlugs[titleOf(project)] === slug);
   if (index >= 0) openProject(projects[index], index);
   else if (dialog.open) dialog.close();
@@ -279,6 +281,7 @@ ui.image.addEventListener("load", fitBrowserToImage);
 dialog.addEventListener("close", () => {
   const url = new URL(window.location.href);
   url.searchParams.delete("project");
+  if (/^\/projects\//.test(url.pathname)) url.pathname = "/";
   window.history.replaceState({}, "", url);
 });
 window.addEventListener("popstate", openProjectFromUrl);

@@ -1,0 +1,5 @@
+DirectoryIndex index.html
+RewriteEngine On
+# Older query links must also return project-specific metadata to crawlers.
+RewriteCond %{QUERY_STRING} (?:^|&)project=(autoartist|booming|obs-cam|isyncro|ifeedebook|msn|laboratorio-edafologia|virtual-wallet|pixel-replay|events|slideaway|neonatal-incubator|kassin|home-automation)(?:&|$)
+RewriteRule ^$ projects/%1/index.html [L]
