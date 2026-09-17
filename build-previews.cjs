@@ -46,3 +46,15 @@ for (const [title, slug] of Object.entries(slugs)) {
   fs.writeFileSync(path.join(directory, 'index.html'), page);
 }
 console.log(`Built ${Object.keys(slugs).length} project preview pages.`);
+const images = [...new Map(Object.entries(data).flatMap(([title, project]) =>
+  (project[6] || []).map((src, index) => [src, {src, alt: `${title}: ${project[1][index] || title}`}])
+)).values()];
+const galleryDirectory = path.join(root, 'gallery');
+fs.mkdirSync(galleryDirectory, {recursive: true});
+fs.writeFileSync(path.join(galleryDirectory, 'index.html'), `<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Galería | Federico D'Andrea</title><link rel="stylesheet" href="gallery.css"></head>
+<body><a class="back" href="/" aria-label="Volver">&#8592;</a><main class="gallery">
+${images.map(({src, alt}) => `<button class="tile" type="button" aria-label="${escape(alt)}"><img src="/${src}" alt="${escape(alt)}" loading="lazy" decoding="async" draggable="false"></button>`).join('\n')}
+</main><dialog><button class="close" aria-label="Cerrar" type="button">&#215;</button><img alt=""></dialog>
+<script src="gallery.js"></script></body></html>`);
