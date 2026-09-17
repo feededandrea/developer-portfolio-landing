@@ -128,8 +128,9 @@ const projectSlugs = {
 function titleOf(project) { return project.dataset.projectTitle || project.querySelector("h3").textContent; }
 function projectUrl(title) {
   const url = new URL(window.location.href);
-  url.pathname = `/projects/${projectSlugs[title]}/`;
-  url.searchParams.delete("project");
+  url.pathname = "/";
+  url.searchParams.set("project", projectSlugs[title]);
+  url.searchParams.set("lg", language);
   return url;
 }
 function openProjectFromUrl() {

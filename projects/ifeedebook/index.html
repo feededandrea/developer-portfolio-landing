@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="es">
   <head>
+    <base href="/" />
+    <script>const destination = new URL('/', location.origin); destination.search = location.search; destination.searchParams.set('project', "ifeedebook"); if (!destination.searchParams.has('lg')) destination.searchParams.set('lg', 'es'); destination.hash = location.hash; location.replace(destination.href);</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0b0c0f" />
@@ -12,7 +14,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css" />
     <link rel="stylesheet" href="styles.css?v=20260917-msn-01" />
   
-    <base href="/" />
     <link rel="canonical" href="https://developerportafolio.ifeede.net/projects/ifeedebook/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Federico D'Andrea | Portfolio" />
@@ -245,6 +246,6 @@
       <a href="gallery/">Ver portfolio completo <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
       <p>Argentina · 2026</p>
     </footer>
-    <script src="script.js?v=20260917-lab-copy-01"></script>
+    <script src="script.js?v=20260917-project-route-01"></script>
   </body>
 </html>
